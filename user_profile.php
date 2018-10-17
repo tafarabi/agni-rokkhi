@@ -26,7 +26,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#home-section"><img class="img-responsive" src="assets/images/logo.png"></a>
+            <!--<a class="navbar-brand" href="#home-section"><img class="img-responsive" src="assets/images/logo.png"></a>-->
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -40,7 +40,7 @@
 			
 			<ul class="nav navbar-nav navbar-right hidden-xs hidden-sm">
                 <li class="gold"><a href="javascript:;"><button class="  btn btn-gradient outline-button" style="margin-bottom: 0px;" data-toggle="modal" data-target="#pop-notification">
-                            <div style="background: #1C589B;transition: all 0.3s;">Notifications  <sup style="color:#18FFFF; font-size:16px;">1</sup></div>
+                            <div style="background: #1C589B;transition: all 0.3s;">Notifications  <sup style="color:#18FFFF; font-size:16px;"><?php notifications(); ?></sup></div>
                         </button></a></li>
             </ul>
 			
@@ -100,7 +100,7 @@
                 <h3>Recent Alarm</h3>
             </div>
             <div class="col-md-10" style="height:50px;background-color:#fff;">
-                <marquee>It's burning at Anonimous place !!!</marquee>
+                <?php recent_alerts(); ?>
             </div>
         </div>
     </section>
@@ -115,7 +115,7 @@
                                 <span class="gold-gradient-color">Local Incidents</span>
                             </div>
                         </div>
-
+						<?php local_alerts(); ?>
                         <button class="btn btn-gradient outline-button pull-left mtb20">
                             <div style="background: #0C1222;transition: all 0.3s">Load more</div>
                         </button>
@@ -126,7 +126,7 @@
                                 <span class="gold-gradient-color">Global Incidents</span>
                             </div>
                         </div>
-
+						<?php local_alerts(); ?>
                         <button class="btn btn-gradient outline-button pull-left mtb20">
                             <div style="background: #0C1222;transition: all 0.3s">Load more</div>
                         </button>
@@ -143,7 +143,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="col-md-12">
-                        <p class="light oR m0" style="opacity: .65">&copy; Copyright 2017, all rights reserved.</p>
+                        <p class="light oR m0" style="opacity: .65">&copy; Copyright 2018, all rights reserved.</p>
                     </div>
                 </div>
             </div>
@@ -165,7 +165,6 @@
 
         
 
-        <!-- Fire alert Popup -->
         <div id="pop-fire-alert" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
@@ -176,20 +175,30 @@
                         <h3 class="modal-title  blue oR m0">FIRE ALERT</h3>
                         <span class="light oR" style="font-size: 14px">Please alert us if any fire disaster is nearby.</span>
                     </div>
-                    <form action="#">
+					<?php alert_verifications(); ?>
+					<form action="" method="POST">
+						<?php //alert_verifications(); ?>
                         <div class="modal-body">
                             <div class="input-box">
-                                <button type="button" class="btn btn-gradient" data-dismiss="modal">Text Alert</button>
+                                <button type="submit" name="text" class="btn btn-gradient">Text Alert</button>
                             </div>
+                            
+
+                        </div>
+                    </form>
+                    <form action="" method="POST">
+						
+                        <div class="modal-body">
+                            
                             <p>Insert a Picture/Video of your nearest fire disaster.</p>
                             <div class="input-box">
-                                <input type="file" name="pic" accept="video/*,image/*">
+                                <input type="file" name="pic" accept="video/*,image/*" required>
                                 <span style="position: absolute"><i class="fa fa-camera"></i></span>
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-gradient" data-dismiss="modal">Submit</button>
+                            <button type="submit" name="file" class="btn btn-gradient">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -208,7 +217,7 @@
                         <h3 class="modal-title  blue oR m0">FIRE STATION(S)</h3>
                         <span class="light oR" style="font-size: 14px">Your nearest fire station numbers.</span>
                     </div>
-                    <h4 class="modal-title  blue oR m0">Mirpur - <strong>010120203</strong></h4>
+                    <?php user_location(); ?>
                     
                    
                 </div>
@@ -228,8 +237,10 @@
                         
                     </div>
 					<br />
-                    <li style="padding:5px;">It's burning 3km<sup>2</sup> away from you !!!</li>
-                    
+					<ul>
+						<?php notification_list(); ?>
+						
+                    </ul>
                    
                 </div>
 
